@@ -1,6 +1,4 @@
-
-@extends('layouts.admin-dashboard', ['title' => 'Create Suite Type'])
-
+@extends('layouts.admin-dashboard', ['title' => 'Create Category'])
 @push('styles')
     <link rel="stylesheet" href="{{ asset('/bower_components/admin-lte/plugins/summernote/summernote-bs4.css') }}">
 @endpush
@@ -14,7 +12,7 @@
             <form class="form form-horizontal" method="POST" action="{{ route('admin.category.store') }}"
                 enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
+                @method('POST')
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-1 row">
@@ -53,7 +51,6 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
                 </div>
             </form>
         </div>

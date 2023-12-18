@@ -21,10 +21,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
          Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
             Route::get('/', 'CategoryController@index')->name('index');
             Route::get('/create', 'CategoryController@create')->name('create');
-            Route::get('/edit', 'CategoryController@create')->name('edit');
+            Route::get('/edit/{category}', 'CategoryController@edit')->name('edit');
             Route::post('/store', 'CategoryController@store')->name('store');
-            Route::post('/update', 'CategoryController@update')->name('update');
-            Route::delete('/delete', 'CategoryController@update')->name('destroy');
+            Route::put('/update/{category}', 'CategoryController@update')->name('update');
+            Route::delete('/delete/{category}', 'CategoryController@destroy')->name('destroy');
         });
 
         // User

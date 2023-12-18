@@ -1,5 +1,4 @@
 @extends('layouts.admin-dashboard')
-
 @push('styles')
     <style>
         .golden-star {
@@ -40,7 +39,7 @@
                                         class="btn btn-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></i></a>
                                     <a href="javascript:;" data-id="{{ $category->id }}"
                                         data-href="{{ route('admin.category.destroy', $category->id) }}"
-                                        onclick="deleteItem(this)" class="btn btn-danger btn-sm deleteItem"><i class="fas fa-trash"></i></a>
+                                         class="btn btn-danger btn-sm deleteItem"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -55,25 +54,6 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            // Initialize your app
-            let app = {
-                initialize: function() {
-                    $(".expiry_date").flatpickr();
-                    $('#resetForm').on('click', app.resetFilter);
-                    $('.export').on('click', function() {
-                        app.export($(this).attr('id'));
-                    });
-                },
-                resetFilter: function() {
-                    $('#first_name').val('');
-                    $('#status').val('');
-                },
-                export: function(format) {
-                    $('#formt').val(format);
-                    $('#exportForm').submit();
-                }
-            };
-            app.initialize();
             $('.deleteItem').click(function(e) {
                 e.preventDefault();
                 var row = $(this).closest('tr');
@@ -85,7 +65,7 @@
                 deleteItem: function(row, url) {
                     Swal.fire({
                         title: 'Are you sure?',
-                        text: "You want to delete the feature!",
+                        text: "You want to delete the Category!",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonText: 'Yes, delete it!'
@@ -99,13 +79,7 @@
                                         'content')
                                 },
                                 success: function(data) {
-                                    if (data.success) {
-                                        row.remove();
-                                        // You don't need to use row.draw() here
                                         location.reload();
-                                    } else {
-                                        alert('Delete failed. Error: ' + data.error);
-                                    }
                                 },
                                 error: function(data) {
                                     console.log(data);
@@ -115,6 +89,7 @@
                     });
                 }
             };
+            app.initialize();
         });
     </script>
 @endpush

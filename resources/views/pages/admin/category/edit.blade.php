@@ -1,19 +1,15 @@
-100644
-@ -0,0 +1,74 @@
-@extends('layouts.admin-dashboard', ['title' => 'Create Room'])
-
+@extends('layouts.admin-dashboard', ['title' => 'Edit Category'])
 @push('styles')
     <link rel="stylesheet" href="{{ asset('/bower_components/admin-lte/plugins/summernote/summernote-bs4.css') }}">
 @endpush
-
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Edit Room Type</h4>
+            <h4 class="card-title">Edit</h4>
         </div>
         <div class="card-body">
-            <form class="form form-horizontal" method="POST" action="{{ route('admin.suite.amenities.update', $amenities->id) }}"
-                enctype="multipart/form-data">
+            <form class="form form-horizontal" method="POST"
+                action="{{ route('admin.category.update', ['category' => $category->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -25,7 +21,8 @@
                             </div>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control @error('name')is-invalid @enderror" id="name"
-                                    name="name" value="{{ old('name',$amenities->name) }}" placeholder="Enter Name"
+                                    name="name" value="{{ old('name', $category->category_name) }}"
+                                    placeholder="Enter Name"
                                     @error('name')aria-describedby="name-error" aria-invalid="true" @enderror>
                                 @error('name')
                                     <span id="title-error" class="error invalid-feedback"
@@ -41,8 +38,9 @@
                                         class="text-danger">*</span></label>
                             </div>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control @error('name')is-invalid @enderror" id="description"
-                                    name="description" value="{{ old('description',$amenities->description) }}" placeholder="Enter description"
+                                <input type="text" class="form-control @error('name')is-invalid @enderror"
+                                    id="description" name="description"
+                                    value="{{ old('description', $category->description) }}" placeholder="Enter description"
                                     @error('description')aria-describedby="description-error" aria-invalid="true" @enderror>
                                 @error('description')
                                     <span id="title-error" class="error invalid-feedback"
@@ -54,7 +52,6 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
                 </div>
             </form>
         </div>

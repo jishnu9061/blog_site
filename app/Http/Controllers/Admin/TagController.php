@@ -1,23 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Toastr;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Constants\PageConstants;
+use App\Http\Requests\TagStoreRequest;
+use App\Http\Requests\TagUpdateRequest;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     public function __construct(Request $request)
     {
         parent::__construct($request);
-        $this->addBaseRoute('admin.category');
-        $this->addBaseView('admin.category');
+        $this->addBaseRoute('admin.tag');
+        $this->addBaseView('admin.tag');
     }
 
     public function index(Request $request)
@@ -35,7 +37,7 @@ class CategoryController extends Controller
         return $this->renderView($path, [], $title);
     }
 
-    public function store(CategoryStoreRequest $request)
+    public function store(TagStoreRequest $request)
     {
          Category::create([
             'category_name' => $request->name,
@@ -52,7 +54,7 @@ class CategoryController extends Controller
         return $this->renderView($path, ['category'=>$category], $title);
     }
 
-    public function update(CategoryUpdateRequest $request,Category $category)
+    public function update(TagUpdateRequest $request,Category $category)
     {
         $category->update([
             'category_name' => $request->name,
@@ -68,5 +70,4 @@ class CategoryController extends Controller
         Toastr::success('Category Deleted Successfully');
         return Response::json(['success' => 'Category Deleted Successfully']);
     }
-
 }
