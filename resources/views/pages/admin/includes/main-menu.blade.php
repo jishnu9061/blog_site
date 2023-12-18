@@ -35,26 +35,14 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
              <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('admin.home') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span><span class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
-                    {{-- <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="{{ route('admin.home') }}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Analytics">Analytics</span></a>
-                        </li>
-
-                    </ul> --}}
                 </li>
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
             </li>
             <li class="nav-item {{ Request::routeIs('admin.category.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.category.index') }}"><i class="fas fa-folder"></i><span class="menu-title text-truncate" data-i18n="Category">Category</span></a>
             </li>
-            {{-- <li class="nav-item "><a class="d-flex align-items-center" href="#"><i data-feather="book-open"></i><span class="menu-title text-truncate" data-i18n="User">Pages</span></a>
-                <ul class="menu-content">
-                    <li class="{{ Request::routeIs('admin.page.create') || Request::routeIs('admin.page.index') ? 'active' : '' }}"><a class="dropdown-item d-flex align-items-center" href="{{route('admin.page.index')}}"><i data-feather='home'></i><span data-i18n="ContactUsRequests">Page</span></a></li>
-
-                        <li class=" {{ Request::routeIs('admin.page-management.testimonials.create') || Request::routeIs('admin.page-management.testimonials.index') ? 'active' : '' }}"><a class="dropdown-item d-flex align-items-center" href="{{route('admin.testimonial.index')}}" data-bs-toggle="" data-i18n="ContactUs"><i data-feather='message-circle'></i><span data-i18n="ContactUs">Testimonial</span></a>
-                    </li>
-                </ul>
-            </li> --}}
-            {{-- <li class="nav-item {{ Request::routeIs('admin.contact-us.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.contact-us.index') }}"><i data-feather='mail'></i><span data-i18n="ContactUsRequests">Contact Requests</span></a></li> --}}
-        </ul>
+            <li class="nav-item {{ Request::routeIs('admin.tag.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.tag.index') }}"><i class="fas fa-tag"></i><span class="menu-title text-truncate" data-i18n="Tag">Tag</span></a>
+                <li class="nav-item {{ Request::routeIs('admin.article.index') ? 'active' : '' }}"><a class="d-flex align-items-center" href="{{ route('admin.article.index') }}"><i class="fas fa-comment"></i><span class="menu-title text-truncate" data-i18n="Article">Article</span></a>
+            </ul>
     </div>
 </div>
 <!-- END: Main Menu-->

@@ -27,6 +27,26 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
             Route::delete('/delete/{category}', 'CategoryController@destroy')->name('destroy');
         });
 
+        // Tag
+        Route::group(['prefix' => 'tag', 'as' => 'tag.'], function () {
+            Route::get('/', 'TagController@index')->name('index');
+            Route::get('/create', 'TagController@create')->name('create');
+            Route::get('/edit/{tag}', 'TagController@edit')->name('edit');
+            Route::post('/store', 'TagController@store')->name('store');
+            Route::put('/update/{tag}', 'TagController@update')->name('update');
+            Route::delete('/delete/{tag}', 'TagController@destroy')->name('destroy');
+        });
+
+        // Article
+        Route::group(['prefix' => 'article', 'as' => 'article.'], function () {
+            Route::get('/', 'ArticleController@index')->name('index');
+            Route::get('/create', 'ArticleController@create')->name('create');
+            Route::get('/edit/{category}', 'ArticleController@edit')->name('edit');
+            Route::post('/store', 'ArticleController@store')->name('store');
+            Route::put('/update/{category}', 'ArticleController@update')->name('update');
+            Route::delete('/delete/{category}', 'ArticleController@destroy')->name('destroy');
+        });
+
         // User
         Route::resource('user', 'UserController');
         Route::get('/user/{id}', 'UserController@show')->name('view-data');

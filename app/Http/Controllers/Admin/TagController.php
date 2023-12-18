@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Toastr;
 use App\Models\Category;
@@ -12,6 +12,7 @@ use App\Http\Requests\TagUpdateRequest;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
+use App\Models\Tag;
 
 class TagController extends Controller
 {
@@ -25,48 +26,48 @@ class TagController extends Controller
     public function index(Request $request)
     {
         $path = $this->getView('index');
-        $categories = Category::paginate(PageConstants::PAGINATE);
-        $title = 'Category';
-        return $this->renderView($path, ['categories'=>$categories], $title);
+        $categories = Tag::paginate(PageConstants::PAGINATE);
+        $title = 'Tag';
+        return $this->renderView($path, ['tags'=>$categories], $title);
     }
 
     public function create()
     {
         $path = $this->getView('create');
-        $title = 'Create Category';
+        $title = 'Create Tag';
         return $this->renderView($path, [], $title);
     }
 
     public function store(TagStoreRequest $request)
     {
-         Category::create([
-            'category_name' => $request->name,
+         Tag::create([
+            'name' => $request->name,
             'description' => $request->description,
         ]);
         Toastr::success('Category Created Successfully');
         return redirect()->route($this->getRoute('index'));
     }
 
-    public function edit(Category $category)
+    public function edit(Tag $tag)
     {
         $path = $this->getView('edit');
         $title = 'Edit Suite Amenities';
-        return $this->renderView($path, ['category'=>$category], $title);
+        return $this->renderView($path, ['tag'=>$tag], $title);
     }
 
-    public function update(TagUpdateRequest $request,Category $category)
+    public function update(TagUpdateRequest $request,Tag $tag)
     {
-        $category->update([
-            'category_name' => $request->name,
+        $tag->update([
+            'name' => $request->name,
             'description' => $request->description,
         ]);
         Toastr::success('Category Updated Successfully');
         return redirect()->route($this->getRoute('index'));
     }
 
-    public function destroy(Category $category)
+    public function destroy(Tag $tag)
     {
-        $category->delete();
+        $tag->delete();
         Toastr::success('Category Deleted Successfully');
         return Response::json(['success' => 'Category Deleted Successfully']);
     }
