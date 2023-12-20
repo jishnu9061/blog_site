@@ -6,6 +6,8 @@ namespace App\Http\Helpers\User;
 use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
+use App\Http\Helpers\Core\FileManager;
+use App\Http\Constants\FileDestinations;
 
 class UserHelper
 {
@@ -31,5 +33,17 @@ class UserHelper
             ->where('status',1)
             ->count();
 
+    }
+
+    public static function getArticleImage($imageName)
+    {
+        $file = asset('images/default-image.png');
+        // dd($imageName);
+        if (null != $imageName) {
+            if (FileManager::checkFileExist($imageName, FileDestinations::ARTICLE_IMAGE)) {
+                $file = FileManager::getFileUrl($imageName, FileDestinations::ARTICLE_IMAGE);
+            }
+        }
+        return $file;
     }
 }

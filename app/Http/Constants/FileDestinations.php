@@ -15,6 +15,7 @@ class FileDestinations
     const BLOG_IMAGES = 'blog/';
     const PAGES_IMAGES = 'pages/';
     const TESTIMONIALS_IMAGE = 'testimonials/image/';
+    const ARTICLE_IMAGE = 'article/image/';
 
     const SUPPORT_TICKET_ATTACHMENTS = 'support-ticket-attachments/';
 
